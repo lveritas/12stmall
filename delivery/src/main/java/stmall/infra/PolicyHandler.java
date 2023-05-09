@@ -38,9 +38,11 @@ public class PolicyHandler {
         Delivery.startDelivery(event);
     }
 
+    @StreamListener(
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='OrderCanceled'"
     )
+    
     public void wheneverOrderCanceled_CancelDelivery(
         @Payload OrderCanceled orderCanceled
     ) {
