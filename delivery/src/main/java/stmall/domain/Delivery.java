@@ -33,11 +33,11 @@ public class Delivery {
 
     @PostPersist
     public void onPostPersist() {
-        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
-        deliveryStarted.publishAfterCommit();
+        // DeliveryStarted deliveryStarted = new DeliveryStarted(this);
+        // deliveryStarted.publishAfterCommit();
 
-        DeliveryCanceled deliveryCanceled = new DeliveryCanceled(this);
-        deliveryCanceled.publishAfterCommit();
+        // DeliveryCanceled deliveryCanceled = new DeliveryCanceled(this);
+        // deliveryCanceled.publishAfterCommit();
     }
 
     public static DeliveryRepository repository() {
@@ -48,13 +48,21 @@ public class Delivery {
     }
 
     public static void startDelivery(OrderPlaced orderPlaced) {
-        /** Example 1:  new item 
+        /** Example 1:  new item */
         Delivery delivery = new Delivery();
+
+        delivery.setOrderId(orderPlaced.getId());
+        delivery.setProductId(orderPlaced.getProductId());
+        delivery.setProductName(orderPlaced.getProductName());
+        delivery.setQty(orderPlaced.getQty());
+
         repository().save(delivery);
 
+
+  
         DeliveryStarted deliveryStarted = new DeliveryStarted(delivery);
         deliveryStarted.publishAfterCommit();
-        */
+        
 
         /** Example 2:  finding and process
         
@@ -80,18 +88,18 @@ public class Delivery {
         deliveryCanceled.publishAfterCommit();
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process*/
         
-        repository().findById(orderCanceled.get???()).ifPresent(delivery->{
+        repository().findbyOrderId(orderCanceled.getId()).ifPresent(delivery->{
             
-            delivery // do something
+            delivery.setStatus("DeliveryCanceled"); // do something
             repository().save(delivery);
 
             DeliveryCanceled deliveryCanceled = new DeliveryCanceled(delivery);
             deliveryCanceled.publishAfterCommit();
 
          });
-        */
+        
 
     }
 }
