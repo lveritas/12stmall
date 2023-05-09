@@ -46,7 +46,7 @@ public class Inventory {
         stockDecreased.publishAfterCommit();
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process        */
         
         repository().findById(deliveryStarted.get???()).ifPresent(inventory->{
             
@@ -57,7 +57,7 @@ public class Inventory {
             stockDecreased.publishAfterCommit();
 
          });
-        */
+
 
     }
 

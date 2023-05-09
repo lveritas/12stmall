@@ -1,5 +1,7 @@
 package stmall.domain;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import stmall.domain.*;
@@ -11,5 +13,5 @@ import stmall.domain.*;
 public interface DeliveryRepository
     extends PagingAndSortingRepository<Delivery, Long> {
 
-    java.util.Optional<Delivery> findbyOrderId(Long id);
+    Optional<Delivery> findByorderId(Long id);
 }
